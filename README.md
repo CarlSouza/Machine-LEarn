@@ -1,4 +1,6 @@
-# Machine-LEarn
-grupo de Machine Learn EMAp
+# Machine-Learn
+Grupo para o trabalho final de Machine Learning da EMAp-FGV.
 
-Este repositório tem como obetivo , o desenvolvimento do trabalhado Final de Machine Learn , da EMAP da FGV. Nosso Tema será sobre Disentangled Representation 
+Este repositório tem como objetivo o desenvolvimento do trabalhado final da disciplina, cujo tema é um estudo sobre Disentangled Representations e Autoencoders.
+
+Grupo: Ademir Tomaz; Carlos Souza, Juliana Carvalho, Raphael Levy
