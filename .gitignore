@@ -1,1 +1,49 @@
 data/MNIST/raw/
+juliana-disentangling-vae/data/
+.vscode/
+data/
+
+# Data to be ignored from disenangling-vae
+
+# directories
+juliana-disentangling-vae/venv*/
+juliana-disentangling-vae/data/
+juliana-disentangling-vae/results/*
+juliana-disentangling-vae/notebooks/
+juliana-disentangling-vae/old*
+juliana-disentangling-vae/trained_models/
+juliana-disentangling-vae/imgs/*
+juliana-disentangling-vae/.idea/
+juliana-disentangling-vae/experiments/
+juliana-disentangling-vae/.vscode/
+juliana-disentangling-vae/*backup*/
+juliana-disentangling-vae/archive*
+juliana-disentangling-vae/log*
+juliana-disentangling-vae/pretrained_models
+juliana-disentangling-vae/test/
+
+# Byte-compiled / optimized / DLL files
+juliana-disentangling-vae/*.egg-info
+juliana-disentangling-vae/*pyc
+__pycache__/
+juliana-disentangling-vae/*.py[cod]
+juliana-disentangling-vae/*.egg*
+juliana-disentangling-vae/.ipynb_checkpoints/
+juliana-disentangling-vae/.DS_Store
+
+# files
+juliana-disentangling-vae/.gitignore
+
+# extensions
+juliana-disentangling-vae/*.pyc
+juliana-disentangling-vae/*.log
+juliana-disentangling-vae/*.sh
+juliana-disentangling-vae/*.tar
+juliana-disentangling-vae/*.zip
+juliana-disentangling-vae/*.tar
+juliana-disentangling-vae/*.sublime*
+juliana-disentangling-vae/*.swp
+juliana-disentangling-vae/*.out
+
+# placeholders to keep directories
+juliana-disentangling-vae/!.keep
