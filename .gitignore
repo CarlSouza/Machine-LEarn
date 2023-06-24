@@ -49,3 +49,4 @@ juliana-disentangling-vae/*.out
 juliana-disentangling-vae/!.keep
 
 join_notebook/results/*
+cvae_mnist.png
