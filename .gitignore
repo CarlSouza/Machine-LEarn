@@ -47,3 +47,5 @@ juliana-disentangling-vae/*.out
 
 # placeholders to keep directories
 juliana-disentangling-vae/!.keep
+
+join_notebook/results/*
