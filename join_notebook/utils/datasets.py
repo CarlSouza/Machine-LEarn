@@ -16,6 +16,7 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, datasets
 
 DIR = os.path.abspath(os.path.dirname(__file__))
+print(DIR)
 COLOUR_BLACK = 0
 COLOUR_WHITE = 1
 DATASETS_DICT = {"mnist": "MNIST",
