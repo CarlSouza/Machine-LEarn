@@ -366,7 +366,33 @@ class Visualizer():
                     for cols in all_cols]
 
         filename = os.path.join(self.model_dir, PLOT_NAMES["gif_traversals"])
-        imageio.mimsave(filename, all_cols, fps=FPS_GIF)
+        imageio.mimsave(filename, all_cols, duration=1000/FPS_GIF)
+
+    def dict_traversals(self, data, n_latents=None, n_per_gif=15):
+        n_images, _, _, width_col = data.shape
+        width_col = int(width_col * self.upsample_factor)
+        all_cols = [[] for c in range(n_per_gif)]
+        for i in range(n_images):
+            grid = self.traversals(data=data[i:i + 1, ...], is_reorder_latents=True,
+                                  n_per_latent=n_per_gif, n_latents=n_latents,
+                                  is_force_return=True)
+
+            height, width, c = grid.shape
+            padding_width = (width - width_col * n_per_gif) // (n_per_gif + 1)
+
+            # split the grids into a list of column images (and removes padding)
+            for j in range(n_per_gif):
+                all_cols[j].append(grid[:, [(j + 1) * padding_width + j * width_col + i
+                                            for i in range(width_col)], :])
+
+        pad_values = (1 - get_background(self.dataset)) * 255
+        all_cols = [concatenate_pad(cols, pad_size=2, pad_values=pad_values, axis=1)
+                    for cols in all_cols]
+
+        # Create a dictionary of columns (gifs)
+        gif_dict = {i+1: all_cols[i] for i in range(n_per_gif)}
+        
+        return gif_dict
 
 
 class GifTraversalsTraining:
@@ -426,5 +452,5 @@ class GifTraversalsTraining:
 
     def save_reset(self):
         """Saves the GIF and resets the list of images. Call at the end of training."""
-        imageio.mimsave(self.save_filename, self.images, fps=FPS_GIF)
+        imageio.mimsave(self.save_filename, self.images, duration=1000/FPS_GIF)
         self.images = []
