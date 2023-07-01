@@ -22,7 +22,8 @@ PLOT_NAMES = dict(generate_samples="samples.png",
                   reconstruct="reconstruct.png",
                   traversals="traversals.png",
                   reconstruct_traverse="reconstruct_traverse.png",
-                  gif_traversals="posterior_traversals.gif",)
+                  gif_traversals="posterior_traversals.gif",
+                  latent_traversals="latent_traversals.gif")
 
 
 class Visualizer():
@@ -255,6 +256,7 @@ class Visualizer():
         is_force_return : bool, optional
             Force returning instead of saving the image.
         """
+        print('aaaaaSDKSFJDSFJDSJFJSDJFJ')
         n_latents = n_latents if n_latents is not None else self.model.latent_dim
         latent_samples = [self._traverse_line(dim, n_per_latent, data=data)
                           for dim in range(self.latent_dim)]
@@ -345,10 +347,12 @@ class Visualizer():
         n_per_gif : int, optional
             Number of images per gif (number of traversals)
         """
-        n_images, _, _, width_col = data.shape
+        n_latents = 10
+        data = data[0:1, ...]  # Select only one datapoint
+        n_images, _, _, width_col = data.shape   # (1, n_channels, height, width)
         width_col = int(width_col * self.upsample_factor)
-        all_cols = [[] for c in range(n_per_gif)]
-        for i in range(n_images):
+        all_cols = [[] for c in range(1)]
+        for i in range(1):
             grid = self.traversals(data=data[i:i + 1, ...], is_reorder_latents=True,
                                    n_per_latent=n_per_gif, n_latents=n_latents,
                                    is_force_return=True)
@@ -357,15 +361,14 @@ class Visualizer():
             padding_width = (width - width_col * n_per_gif) // (n_per_gif + 1)
 
             # split the grids into a list of column images (and removes padding)
-            for j in range(n_per_gif):
-                all_cols[j].append(grid[:, [(j + 1) * padding_width + j * width_col + i
-                                            for i in range(width_col)], :])
+            for j in range(1):
+                all_cols[j].append(grid[:, :, :])
 
         pad_values = (1 - get_background(self.dataset)) * 255
         all_cols = [concatenate_pad(cols, pad_size=2, pad_values=pad_values, axis=1)
                     for cols in all_cols]
 
-        filename = os.path.join(self.model_dir, PLOT_NAMES["gif_traversals"])
+        filename = os.path.join(self.model_dir, PLOT_NAMES["latent_traversals"])
         imageio.mimsave(filename, all_cols, duration=1000/FPS_GIF)
 
 class GifTraversalsTraining:
